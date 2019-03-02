@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<autosearch>
+			<general>
+				<show>1</show>
+				<limit>5</limit>
+				<search_delay>500</search_delay>
+				<show_sku>10</show_sku>
+				<show_price>1</show_price>
+				<show_image>1</show_image>
+				<show_short_description>1</show_short_description>
+				<short_max_char>100</short_max_char>
+			</general>
+			<search_terms>
+				<enable_search_term>1</enable_search_term>
+				<enable_ajax_search_term>1</enable_ajax_search_term>
+				<limit_term>5</limit_term>
+			</search_terms>
+		</autosearch>
+	</default>
+</config>

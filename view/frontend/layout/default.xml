@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageDev_AutoSearch::css/style.css" />
+        <css src="MageDev_AutoSearch::css/font-awesome.min.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header-wrapper">
+            <block class="MageDev\AutoSearch\Block\AutoSuggestion" name="top.auto-search" as="topAutoSearch"/>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="MageDev\Autosearch\Block\AutoSuggestion" name="top.auto-search.ajax" template="MageDev_AutoSearch::js.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="top.search" remove="true" />
+    </body>
+</page>

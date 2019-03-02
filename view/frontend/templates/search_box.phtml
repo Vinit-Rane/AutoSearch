@@ -1,0 +1,27 @@
+<?php
+$searchHelper = $block->getSearchHelper();
+?>
+<div class="block block-search auto-search-block box search_box">
+    <div class="block block-title"><strong><?= /* @escapeNotVerified */ __('Search') ?></strong></div>
+    <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form" action="<?php echo $this->getCatalogSearchLink(); ?>" method="get">
+            <div class="field search auto-search">
+                <label class="label" for="search" data-role="minisearch-label">
+                    <span><?= /* @escapeNotVerified */ __('Search') ?></span>
+                </label>
+                <div class="control">
+                    <input id="search" type="text" name="<?php echo $searchHelper->getQueryParamName() ?>" class="input-text" autocomplete="off"
+                           value="<?php echo $searchHelper->getEscapedQueryText() ?>"
+                           placeholder="<?php echo __('Search entire store here...'); ?>" />
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit"
+                        title="<?= $block->escapeHtml(__('Search')) ?>"
+                        class="action search">
+                    <span><?= /* @escapeNotVerified */ __('Search') ?></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

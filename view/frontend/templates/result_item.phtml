@@ -1,0 +1,64 @@
+<?php
+$imageHelper = $this->getModuleImageHelper();
+$moduleHelper = $this->getModuleHelper();
+
+$product = $this->getProduct();
+$showSku = $this->getShowSku();
+$showPrice = $this->getShowPrice();
+$showImage = $this->getShowImage();
+$imageType = $this->getImageType();
+$showShortDescription = $this->getShowShortDescription();
+$shortMaxChar = $this->getMaxChar();
+$queryText = $this->getQueryText();
+
+$productName  = $product->getName();
+$productName  = strip_tags(html_entity_decode($productName, ENT_QUOTES, 'UTF-8'));
+$productName = <<< PRODUCTNAME
+$productName
+PRODUCTNAME;
+$productName = preg_replace('/('.$queryText.')/i','<strong class="searched-words">$1</strong>',$productName);
+
+$shortDescription = $product->getShortDescription();
+$shortDescription  = strip_tags(html_entity_decode($shortDescription, ENT_QUOTES, 'UTF-8'));
+$shortDescription = $moduleHelper->subString($shortDescription, $shortMaxChar, '...');
+$shortDescription = <<< SHORTDESCRIPTIONSTR
+$shortDescription
+SHORTDESCRIPTIONSTR;
+$shortDescription = preg_replace('/('.$queryText.')/i','<strong class="searched-words">$1</strong>',$shortDescription);
+
+?>
+<div class="product">
+    <?php if($showImage): ?>
+        <?php $_image = $imageHelper->getImg($product, 100, 100, $imageType);?>
+        <div class="image">
+            <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $_image->getLabel() ?>" class="product-item-photo">
+                <img src="<?php echo $_image->getUrl(); ?>" alt="<?php echo $_image->getLabel() ?>" width="70px" height="50px"/>
+            </a>
+        </div>
+    <?php endif; ?>
+    <div class="info">
+        <div class="name">
+            <a href="<?php echo $product->getProductUrl() ?>">
+                <?php echo $productName; ?>
+            </a>
+        </div>
+        <?php if($showSku): ?>
+            <div class="sku">
+                <span class="sku-label">
+                <?php echo __('Sku: '); ?>
+                </span>
+                <?php echo $product->getSku(); ?>
+            </div>
+        <?php endif; ?>
+        <?php if($showShortDescription): ?>
+            <div class="description">
+                <?php echo $shortDescription; ?>
+            </div>
+        <?php endif; ?>
+        <?php if($showPrice): ?>
+            <div class="price" style="width: 100%;text-align: right;">
+                <?php echo $block->getProductPrice($product) ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
